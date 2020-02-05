@@ -1,4 +1,6 @@
 import sys
+import argparse
+
 class City:
 #Using strings like pointers is not a good idea. I'm doing it anyway.
 
@@ -67,8 +69,18 @@ class ExploreQueue:
             if i[0] == cityName:
                 return i[1]
         return None
+#Configuring the parser and parsing args
+parser = argparse.ArgumentParser()
+parser.add_argument("inputFile", help="The file containing connection data")
+parser.add_argument("startCity", help="The root node of the graph")
+parser.add_argument("endCity", help="The city to search for")
+parser.parse_args()
 
-f = open("input1.txt", 'r')
+inFile = parser.inputFile
+startCity = parser.startCity
+endCity = parser.endCity
+
+f = open(inFile, 'r')
 cities = Graph()
 #Read file
 while(True):
@@ -82,13 +94,11 @@ while(True):
         cities.addCityIfAbsent(lineContents[1])
         cities.connectCities(lineContents[0], lineContents[1], int(lineContents[2]))
 
-#Get the start node, push it into the queue
-startCity = "Stuttgart"
-endCity = "Saaerbruchen"
+
 exploredList = []
 
 explorationQueue = ExploreQueue()
-#Distance 0 for first item
+#Get the start node, push it into the queue
 explorationQueue.push(cities.graph[startCity].name, 0)
 #If queue not empty
 while not explorationQueue.isEmpty():
