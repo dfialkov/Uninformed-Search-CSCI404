@@ -74,11 +74,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument("inputFile", help="The file containing connection data")
 parser.add_argument("startCity", help="The root node of the graph")
 parser.add_argument("endCity", help="The city to search for")
-parser.parse_args()
+args = parser.parse_args()
 
-inFile = parser.inputFile
-startCity = parser.startCity
-endCity = parser.endCity
+inFile = args.inputFile
+startCity = args.startCity
+endCity = args.endCity
 
 f = open(inFile, 'r')
 cities = Graph()
