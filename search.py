@@ -129,15 +129,15 @@ while not explorationQueue.isEmpty():
                 routeList = []
                 
                 lastCity = i
-                
+                #print predecessors until you run out
                 while(cities.graph[lastCity].predecessor != ""):
-                    
                     lastPredecessor = cities.graph[lastCity].predecessor
                     routeList.append(str(lastPredecessor) +" to " + str(lastCity)   + ", " + str(cities.graph[lastPredecessor].connections[lastCity]) + " km")
                     lastCity = lastPredecessor
                 for i in reversed(routeList):
                     print(i)
                 sys.exit()
+#An empty queue signifies that the search has exhausted its options and therefore that no route exists
 print("distance: infinity")
 print("route:")
 print("none")
