@@ -51,6 +51,9 @@ class ExploreQueue:
         return returnedCity
 
     def push(self, cityName, totalDistance):
+        for i in self.toExplore:
+            if i[0] == cityName:
+                self.toExplore.remove(i)
         self.toExplore.append((cityName, totalDistance))
 
     def isEmpty(self):
